@@ -995,6 +995,11 @@ paths:
                   time:
                     type: string
                     description: Время ответа
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
         '400':
           description: Массив ошибок
           content:
@@ -1503,6 +1508,21 @@ paths:
                   type: integer
                   example: 1
                   description: ID пользователя
+                fields:
+                  type: object
+                  properties:
+                    birthdate:
+                      type: string
+                      example: "1990-05-07"
+                    gender:
+                      type: string
+                      example: "F"
+                    city:
+                      type: string
+                      example: "Москва"
+                    description:
+                      type: string
+                      example: "Футболист"
       responses:
         '200':
           description: Возвращает ответ результата
