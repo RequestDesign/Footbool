@@ -1533,7 +1533,7 @@ paths:
                       type: string
                       example: "ТЕст12"
                     photo:
-                      type: string
+                      type: base64
       responses:
         '200':
           description: Возвращает ответ результата
