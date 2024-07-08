@@ -1523,6 +1523,17 @@ paths:
                     description:
                       type: string
                       example: "Футболист"
+                    position:
+                      type: string
+                      example: "Защитник"
+                    level:
+                      type: string
+                      example: "Любитель"
+                    nick:
+                      type: string
+                      example: "ТЕст12"
+                    photo:
+                      type: base64
       responses:
         '200':
           description: Возвращает ответ результата
