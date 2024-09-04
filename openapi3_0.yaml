@@ -102,6 +102,18 @@ paths:
           description: Время начала события
           schema:
             type: string
+        - name: date
+          description: Дата
+          schema:
+            type: date
+        - name: host_play
+          description: Играет ли хост (Y/N/null)
+          schema:
+            type: string
+        - name: inventory
+          description: ID значений инвентаря через запятую
+          schema:
+            type: integer[]
       responses:
         '200':
           description: Успешный ответ
@@ -124,10 +136,65 @@ paths:
                     type: string
                     description: Время ответа
                   data:
-                    type: array
-                    description: Массив полей
-                    items:
-                      $ref: "#/components/schemas/Events"
+                    type: integer
+                    description: ID созданного события
+                    example: 1
+                  
+        default:
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /events/updateEvent/:
+    post:
+      summary: Редактирование события
+      tags:
+        - События
+      parameters:
+        - name: event_id 
+          description: ID события
+          schema:
+            type: integer
+        - name: description
+          description: Детали события
+          schema:
+            type: string
+        - name: access
+          description: ID значения доступа (открыт/закрыт)
+          schema:
+            type: integer
+        - name: host_play
+          description: Играет ли хост (Y/N/null)
+          schema:
+            type: string
+        - name: inventory
+          description: ID значений инвентаря через запятую
+          schema:
+            type: integer[]
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    description: Статус
+                  code:
+                    type: string
+                    description: Код ответа
+                    example: 200
+                  message:
+                    type: string
+                    description: Сообщение
+                  time:
+                    type: string
+                    description: Время ответа
         default:
           description: Ошибка
           content:
@@ -1797,6 +1864,11 @@ paths:
       tags:
         - Отзывы
       summary: Получить значения тегов для полей
+      parameters:
+        - name: score
+          description: Значение от 1 до 5
+          schema:
+            type: integer
       responses:
         '200':
           description:
@@ -1838,6 +1910,11 @@ paths:
       tags:
         - Отзывы
       summary: Получить значения тегов для хоста
+      parameters:
+        - name: score
+          description: Значение от 1 до 5
+          schema:
+            type: integer
       responses:
         '200':
           description:
@@ -2130,7 +2207,11 @@ paths:
                     type: string
                     description: Время ответа
                   data:
-                    type: boolean
+                    type: string
+                    description: Статус подписки
+                    example: friend - подписаны друг на друга; subscribed - подписан; false - не подписан
+
+
         default:
           description: Ошибка
           content:
